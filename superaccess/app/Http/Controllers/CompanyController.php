@@ -62,9 +62,11 @@ class CompanyController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Company $company)
     {
-
+        return view('company.edit',[
+            'company' => $company
+        ]);
     }
 
     /**
@@ -74,9 +76,11 @@ class CompanyController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Company $company)
     {
-        //
+        $company->name = $request->get('nombre');
+        $company->save();
+        return redirect('/company');
     }
 
     /**
@@ -85,8 +89,16 @@ class CompanyController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Company $company)
     {
-        //
+        $company->delete();
+        return redirect('/company');
     }
+
+    public function confirmDelete(Company $company){
+        return view('company.confirmDelete',[
+            'company' => $company
+        ]);
+    }
+
 }

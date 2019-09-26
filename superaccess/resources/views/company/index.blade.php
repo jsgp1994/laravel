@@ -15,6 +15,7 @@
                 <td>{{ $data->name }}</td>
                 <td>{{ $data->id_parque }}</td>
                 <td><a href="{{ route('company.edit', $data) }} ">Editar</a></td>
+                <td><a href="{{ route('company/confirmDelete', $data) }} ">Eliminar</a></td>
             </tr>
             @endforeach
         </tbody>

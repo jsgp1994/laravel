@@ -2,11 +2,13 @@
 @extends('layouts.base')
 
 @section('content')
-    <h1>Editar EMPRESAS</h1>
-    <form action="/company" method="POST">
+    <h1>Editar EMPRESA</h1>
+
+    <form action="{{ route('company.update', $company) }}" method="POST">
         @csrf
-        <input type="text" name="nombre">
-        <input type="submit" value="crear empresa">
+        @method('put')
+        <p>Nombre de la empresa</p><input type="text" name="nombre">
+        <input type="submit" value="editar empresa">
     </form>
 @endsection
 

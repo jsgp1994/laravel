@@ -15,6 +15,8 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('company/{company}/confirmDelete', 'CompanyController@confirmDelete')->name('company/confirmDelete');
+
 Route::resource('/company', 'CompanyController');
 
 Auth::routes();
