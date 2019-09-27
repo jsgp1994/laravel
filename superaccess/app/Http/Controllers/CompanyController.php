@@ -37,10 +37,14 @@ class CompanyController extends Controller
      */
     public function store(Request $request)
     {
+        $validaData = $request->validate([
+            'nombre' => 'required|min:3'
+        ]);
+
         $company_save = new Company();
         $company_save->name = $request->get('nombre');
         $company_save->control = 3;
-        $company_save->id_parque = 16;
+        $company_save->park_id = 1;
         $company_save->save();
         return redirect('/company');
     }
@@ -51,9 +55,11 @@ class CompanyController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Company $company)
     {
-        //
+        return view('company.show',[
+            'company' => $company
+        ]);
     }
 
     /**

@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateColumnIdParqueCompanies extends Migration
+class CreateParksTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,11 @@ class CreateColumnIdParqueCompanies extends Migration
      */
     public function up()
     {
-        Schema::table('companies', function (Blueprint $table) {
-            $table->integer('park_id');
+        Schema::create('parks', function (Blueprint $table) {
+            $table->bigIncrements('id');
+            $table->unsignedInteger('company_id');
+            $table->text('name');
+            $table->timestamps();
         });
     }
 
@@ -25,8 +28,6 @@ class CreateColumnIdParqueCompanies extends Migration
      */
     public function down()
     {
-        Schema::table('companies', function (Blueprint $table) {
-            $table->dropColumn('park_id');
-        });
+        Schema::dropIfExists('parks');
     }
 }

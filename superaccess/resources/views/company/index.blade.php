@@ -12,7 +12,7 @@
         <tbody>
             @foreach($companies as $data)
             <tr>
-                <td>{{ $data->name }}</td>
+                <td><a href="{{ route('company.show', $data) }}">{{ $data->name }}</a></td>
                 <td>{{ $data->id_parque }}</td>
                 <td><a href="{{ route('company.edit', $data) }} ">Editar</a></td>
                 <td><a href="{{ route('company/confirmDelete', $data) }} ">Eliminar</a></td>
